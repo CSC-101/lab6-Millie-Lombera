@@ -1,6 +1,8 @@
 import data
 import lab6
 import unittest
+from data import Book
+from lab6 import selection_sort_books, swap_case, str_translate, histogram
 
 
 # Write your test cases for each part below.
@@ -64,17 +66,48 @@ class TestCases(unittest.TestCase):
 
 
     # Part 1
+    def test_selection_sort_book1(self):
+        books = [Book(2,"The Great Gatsby"), Book(1,"1984"), Book(3,"To Kill a Mockingbird")]
+        selection_sort_books(books)
+        self.assertEqual([book.title for book in books],["1984", "The Great Gatsby", "To Kill a Mockingbird"])
 
+
+    # Test case with an empty list
+    def test_selection_sort_book2(self):
+        empty_books = []
+        selection_sort_books(empty_books)
+        self.assertEqual(empty_books,[])
 
     # Part 2
-
+    def test_swapcase1(self):
+        word1 = "Millie Lombera"
+        actual = swap_case(word1)
+        self.assertEqual("mILLIE lOMBERA",actual)
+    def test_swapcase2(self):
+        word1 = "mILLIE lOMBERA"
+        actual = swap_case(word1)
+        self.assertEqual("Millie Lombera", actual)
 
     # Part 3
+    def test_str_transalte1(self):
+        test1 = str_translate('abcdcba', 'a', 'x')
+        actual = "xbcdcbx"
+        self.assertEqual(test1, actual)
 
-
+    def test_str_transalte2(self):
+        test2 = str_translate('hello world', 'o', '0')
+        actual = "hell0 w0rld"
+        self.assertEqual(test2,actual)
     # Part 4
+    def test_histogram(self):
+        test1 = histogram("WOW Hello")
+        actual = {'W': 2, 'O': 1, ' ': 1, 'H': 1, 'e': 1, 'l': 2, 'o': 1}
+        self.assertEqual(test1,actual)
 
-
+    def test_histogram2(self):
+        test = histogram("Millie Lombera")
+        actual = {'M': 1, 'i': 2, 'l': 2, 'e': 2, ' ': 1, 'L': 1, 'o': 1, 'm': 1, 'b': 1, 'r': 1, 'a': 1}
+        self.assertEqual(test,actual)
 
 
 
